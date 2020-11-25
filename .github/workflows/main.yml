@@ -20,9 +20,9 @@ jobs:
           echo ${{ github.event_name }}
 
       - name: Run if workflow dispatch
-        if: github.event_name === workflow_dispatch
+        if: github.event_name == workflow_dispatch
         run: echo Workflow has been dispatched
 
       - name: Run if push
-        if: github.event_name === push
+        if: github.event_name == push
         run: echo Something has been pushed
