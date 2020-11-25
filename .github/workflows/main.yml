@@ -18,3 +18,11 @@ jobs:
         run: |
           echo "Hello from GitHub actions"
           echo ${{ github.event_name }}
+
+      - name: Run if workflow dispatch
+        if: github.event_name === workflow_dispatch
+        run: echo Workflow has been dispatched
+
+      - name: Run if push
+        if: github.event_name === push
+        run: echo Something has been pushed
