@@ -32,10 +32,12 @@ jobs:
 
       - name: Get version
         id: get_pom_version
-        run: |
-          echo "POM_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
+        #run: |
+        #  echo "POM_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> 
+        run: echo ::set-output name=docker_tag::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
 
       - name: Display version
+        #echo Version: $POM_VERSION
+        #echo Version: ${{ env.POM_VERSION }}
         run: |
-          echo Version: $POM_VERSION
-          echo Version: ${{ env.POM_VERSION }}
+          echo Version: ${{ steps.get_pom_version.outputs.docker_tag }}
