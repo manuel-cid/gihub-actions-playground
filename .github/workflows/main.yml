@@ -32,6 +32,6 @@ jobs:
 
       - name: Get version
         run: |
-          VERSION=$( mvn help:evaluate -Dexpression=project.version -q -DforceStdout )
+          mvn help:evaluate -Dexpression=project.version -q -DforceStdout > VERSION
           echo version: ${{ VERSION }}
         id: get_version
