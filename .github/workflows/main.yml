@@ -32,6 +32,6 @@ jobs:
 
       - name: Get version
         run: |
-          mvn help:evaluate -Dexpression=project.version -q -DforceStdout > POM_VERSION
-          echo version: ${{ VERSION }}
+          echo ::set-env name=POM_VERSION::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          echo version: ${{ env.POM_VERSION }}
         id: get_version
