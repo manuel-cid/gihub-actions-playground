@@ -37,3 +37,9 @@ jobs:
           echo Version: $POM_VERSION
           echo ${{ env.GITHUB_SHA_SHORT }}
         id: get_version
+
+      - name: Display version
+        run: |
+          echo Version: $(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          echo Version: $POM_VERSION
+          echo Version: ${{ env.GITHUB_SHA_SHORT }}
