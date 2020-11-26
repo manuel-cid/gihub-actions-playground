@@ -26,3 +26,12 @@ jobs:
       - name: Run if push
         if: github.event_name == 'push'
         run: echo Something has been pushed
+
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
+
+      - name: Get version
+        run: |
+          VERSION=$( mvn help:evaluate -Dexpression=project.version -q -DforceStdout )
+          echo "::set-output name=version::$VERSION"
+        id: get_version
